@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View, KeyboardAvoidingView } from 'react-native';
 import Task from './components/Task'
 
@@ -9,14 +9,12 @@ export default function App() {
 
   const handleAddTask = () => {
     console.log(task)
-    setTasksItems([...tasksItems,task]);
+    setTasksItems([...tasksItems, task]);
     setTask(null)
   }
 
-  const handleDelete = (id) => {
-    let tempArr = [...tasksItems]
-    tempArr.splice(id, 1)
-    setTasksItems(tempArr)
+  const handleDelete = (index) => {
+    setTasksItems(tasksItems.filter((value, ind) => ind !== index))
   }
 
   return (
@@ -25,14 +23,15 @@ export default function App() {
         <Text style={styles.sectionTitle}>ToDoApp</Text>
         <View style={styles.items}>
           {
-            tasksItems.map((item,index) => {
-              return <Task key={index} text={item} delete={handleDelete}/>
+            tasksItems.map((item, index) => {
+              //console.log(`${item}  ${index}`)
+              return <Task key={index} index={index} text={item} delete={handleDelete} />
             })
           }
         </View>
       </View>
       <KeyboardAvoidingView>
-        <TextInput value={task} placeholder='write your tasks' onChangeText={text => setTask(text)} onSubmitEditing={()=> handleAddTask()}></TextInput>
+        <TextInput value={task} placeholder='write your tasks' onChangeText={text => setTask(text)} onSubmitEditing={() => handleAddTask()}></TextInput>
         <TouchableOpacity onPress={() => handleAddTask()}>
           <View>
             <Text>+</Text>

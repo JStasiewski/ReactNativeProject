@@ -5,7 +5,7 @@ const Task = (props) => {
   return (
     <View>
         <Text>{props.text}</Text>
-        <TouchableOpacity onPress={()=>props.delete(props.key)}>
+        <TouchableOpacity onPress={()=>props.delete(props.index)}>
             <Text>X</Text>
         </TouchableOpacity>
     </View>
