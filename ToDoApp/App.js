@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View, KeyboardAvoidingView, SafeAreaView, FlatList } from 'react-native';
+import {
+  StyleSheet, Text,
+  TextInput, TouchableOpacity,
+  View, KeyboardAvoidingView,
+  SafeAreaView, FlatList,
+  ToastAndroid
+} from 'react-native';
 import Task from './components/Task';
 
 export default function App() {
@@ -7,8 +13,13 @@ export default function App() {
   const [tasksItems, setTasksItems] = useState([]);
 
   const handleAddTask = () => {
-    setTasksItems([...tasksItems, task]);
-    setTask(null);
+    if (task !== '') {
+      setTasksItems([...tasksItems, task]);
+      setTask(null);
+    }
+    else {
+      ToastAndroid.show('Write your task before adding it!', ToastAndroid.SHORT)
+    }
   };
 
   const handleDelete = (index) => {
