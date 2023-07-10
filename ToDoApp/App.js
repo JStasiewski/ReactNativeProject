@@ -4,7 +4,7 @@ import {
   TextInput, TouchableOpacity,
   View, KeyboardAvoidingView,
   SafeAreaView, FlatList,
-  ToastAndroid
+  ToastAndroid, StatusBar
 } from 'react-native';
 import Task from './components/Task';
 
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    paddingTop: Platform.OS === 'android' ? 50 : 0,
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
   },
   tasksWrapper: {
     flex: 1,
