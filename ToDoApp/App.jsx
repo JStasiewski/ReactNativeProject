@@ -15,10 +15,11 @@ export default function App() {
   const handleAddTask = () => {
     if (task !== '') {
       setTasksItems([...tasksItems, task]);
-      setTask(null);
+      setTask('');
     }
     else {
       ToastAndroid.show('Write your task before adding it!', ToastAndroid.SHORT)
+      return;
     }
   };
 
@@ -64,7 +65,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+    paddingTop: StatusBar.currentHeight,
+    // paddingTop: 0,
   },
   tasksWrapper: {
     flex: 1,
